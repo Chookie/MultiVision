@@ -9,10 +9,4 @@
         $locationProvider.html5Mode(true);
     });
 
-    var mainCtrl = function ($scope) {
-      $scope.myVar = "Hello Angular";
-    };
-
-    app.controller('mainCtrl', ["$scope", mainCtrl]);
-
-}(window.angular));1
+}(window.angular));

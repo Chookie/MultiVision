@@ -48,6 +48,7 @@ db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
     console.log('multivision db opened on ' + (dbUrl.indexOf("localhost") !== -1 ? 'localhost' : 'remote host'));
 });
+/* Moved in chapter 4.3
 // Create a schema
 var messageSchema = mongoose.Schema({message:  String });
 // Create model using this schema
@@ -56,9 +57,9 @@ var mongoMessage;
 // Find first message in database
 Message.findOne().exec( function( err, result) {
    mongoMessage = result.message;
-});
+});*/
 
-// Requests coming from angular
+// Requests coming from angular, send back the fragment (partial) it wants
 app.get('/partials/:partialPath', function (req, res) {
    res.render('partials/' + req.params.partialPath) ;
 });
@@ -70,8 +71,12 @@ app.get('/partials/:partialPath', function (req, res) {
 // Other solution is to have server know about all client side routes
 // and have default * send back 404 error
 app.get('*', function (req, res) {
-    res.render('index', { mongoMessage: mongoMessage });
+    res.render('index');
 });
+/* Moved in chapter 4.3
+/app.get('*', function (req, res) {
+    res.render('index', { mongoMessage: mongoMessage });
+});*/
 
 var port = parseInt(process.env.PORT, 10) || 3030;
 app.listen(port);
