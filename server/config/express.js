@@ -4,6 +4,9 @@
     var stylus = require('stylus');
     var logger = require('morgan');  // Express logger
     var bodyParser = require('body-parser');
+    var session = require('express-session');
+    var cookieParser = require('cookie-parser');
+    var passport = require('passport');
 
     module.exports = function (app, config) {
 
@@ -20,12 +23,24 @@
 
         // Set logging mode to dev (verbose).  Express 4 moved logger to separate module called morgan
         app.use(logger('dev'));
+        // Session uses cookie for storage, also no longer part of express
+        app.use(cookieParser());
 
-        // Used by other middleware to encode/decode form and json messages
+        //// Used by other middleware to encode/decode form and json messages
+        // app.use(bodyParser()); is deprecated
         app.use(bodyParser.urlencoded({extended: true}));
         app.use(bodyParser.json());
+        // Enable session storage, also no longer part of <<express></express></express>
+        // secret is what session is encrypted with so no one else can intercept
+        app.use(session({ secret: 'multivisionunicorns', saveUninitialized: true, resave: true}));
 
-        // Middleware is express concept where injected into chain takes req, res, next and can modify req or response then call next.
+        // Initialise passport
+        app.use(passport.initialize());
+        // Tell passport to use session
+        app.use(passport.session());
+
+
+            // Middleware is express concept where injected into chain takes req, res, next and can modify req or response then call next.
         // stylus middleware is method that wraps this and we just set some other properties.
         // Where to find stylus files
         //noinspection JSCheckFunctionSignatures

@@ -12,17 +12,18 @@
         });
 
         var userSchema = mongoose.Schema({
-            firstName: String,
-            lastName: String,
-            userName: String
+            firstname: String,
+            lastname: String,
+            username: String
         });
 
         var User = mongoose.model('User', userSchema);
 
         User.find({}).exec(function (err, collection){
            if(collection.length === 0){
-               User.create({firstName: 'Alison', lastName: 'Johnston', userName: 'alison'});
-               User.create({firstName: 'Jimmy', lastName: 'Hendrix', userName: 'jim'});
+               console.log('populating users collection');
+               User.create({firstname: 'Alison', lastname: 'Johnston', username: 'alison'});
+               User.create({firstname: 'Jimmy', lastname: 'Hendrix', username: 'jim'});
            }
         });
 
