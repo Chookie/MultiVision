@@ -2,18 +2,20 @@
 
     var app = angular.module('app');
 
-    var navBarLoginCtrl = function($scope, $http) {
+    var navBarLoginCtrl = function($scope, $http, mvIdentity, mvNotifier) {
+        $scope.identity = mvIdentity;
         $scope.signin = function (username, password) {
             $http.post('/login', {username:username, password:password}).then( function (response) {
                 if(response.data.success){
-                    console.log('Logged in!');
+                    mvIdentity.currentUser = response.data.user;
+                    mvNotifier.notify("You have successfully signed in!")
                 } else {
-                    console.log('failed to log in!');
+                    mvNotifier.notify("Username/Password combination incorrect")
                 }
             });
         };
     };
 
-    app.controller("navBarLoginCtrl", ["$scope","$http", navBarLoginCtrl]);
+    app.controller("navBarLoginCtrl", ["$scope","$http", "mvIdentity","mvNotifier", navBarLoginCtrl]);
 
 }(window.angular));

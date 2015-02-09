@@ -40,7 +40,7 @@
         app.use(passport.session());
 
 
-            // Middleware is express concept where injected into chain takes req, res, next and can modify req or response then call next.
+        // Middleware is express concept where injected into chain takes req, res, next and can modify req or response then call next.
         // stylus middleware is method that wraps this and we just set some other properties.
         // Where to find stylus files
         //noinspection JSCheckFunctionSignatures

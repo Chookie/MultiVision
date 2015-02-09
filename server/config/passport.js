@@ -11,8 +11,10 @@
                   console.log('findOne ' + username + ' ' + password);
                   User.findOne({username: username}).exec(function (err, user) {
                     if (user) {
+                        console.log('found ' + username);
                         return done(null, user);
                     } else {
+                        console.error('error finding %s : %s ', username, err);
                         return done(null, false);
                     }
                   })

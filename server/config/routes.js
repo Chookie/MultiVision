@@ -27,6 +27,7 @@
                     console.error('login post user falsey');
                     res.send({success:false})
                 } else {
+                    // Normally don't need to do this login if using form but we are using xhr so need to
                     req.logIn(user, function (err) {
                         if (err) {
                             console.error('login post login' + err);
