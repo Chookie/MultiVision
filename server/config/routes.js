@@ -18,6 +18,7 @@
 
         app.post('/login', function (req, res, next) {
             var auth = passport.authenticate('local', function (err, user, info) {
+                console.log('authenticating user %s', user.name)
                 // If no password entered then authenticate does not get called on serverside of passport
                 if(err) {
                     console.error('login post err' + err);
