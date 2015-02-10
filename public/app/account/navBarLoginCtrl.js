@@ -2,7 +2,7 @@
 
     var app = angular.module('app');
 
-    var navBarLoginCtrl = function($scope, $http, mvIdentity, mvNotifier, mvAuth) {
+    var navBarLoginCtrl = function($scope, mvIdentity, mvNotifier, mvAuth) {
         $scope.identity = mvIdentity;
         $scope.signin = function (username, password) {
             mvAuth.authenticateUser(username, password).then( function (success) {
@@ -15,6 +15,6 @@
         };
     };
 
-    app.controller("navBarLoginCtrl", ["$scope","$http", "mvIdentity","mvNotifier", "mvAuth", navBarLoginCtrl]);
+    app.controller("navBarLoginCtrl", ["$scope","mvIdentity","mvNotifier", "mvAuth", navBarLoginCtrl]);
 
 }(window.angular));
