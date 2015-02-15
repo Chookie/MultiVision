@@ -17,8 +17,7 @@
         // app.js then gets this and returns the right page.
         $routeProvider
             .when('/',{ templateUrl: '/partials/main/main', controller: 'mainCtrl'})
-            .when('/admin/users', {
-                templateUrl: '/partials/admin/user-list',
+            .when('/admin/users', {templateUrl: '/partials/admin/user-list',
                 controller: 'mvUserListCtrl', resolve: routeRoleChecks.admin
                 // resolver allows conditions for going to route
  /*               resolve: {
@@ -27,6 +26,7 @@
                         return mvAuth.authoriseCurrentUserForRoute('admin')
                     }
                 }*/
+            //.when('/signup',{ templateUrl: '/partials/account/signup', controller: 'mvSignupCtrl'})
             });
     });
 
