@@ -10,4 +10,4 @@ angular.module('app').factory('mvNotifier', function(){
             window.toastr.error(message)
         }
     }
-}]);
+});
