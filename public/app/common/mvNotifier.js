@@ -6,7 +6,7 @@
 
     // Service
     ngapp.factory('mvNotifier', function (mvToastr) {
-        mvToastr.options = {"timeOut": "2000", "closeButton": true };
+        //mvToastr.options = {"timeOut": "2000", "closeButton": true };
         return{
             notifySuccess: function (msg) {
                 mvToastr.success(msg);
