@@ -1,6 +1,6 @@
 
 // Handle notifications
-angular.module('app').value('toastr', toastr)
+angular.module('app').value('toastr', toastr);
 
 angular.module('app').factory('mvNotifier', ['toastr', function(toastr){
     // THIS CODE IS KIND OF STUPID. wraps toastr library in a service
@@ -13,4 +13,4 @@ angular.module('app').factory('mvNotifier', ['toastr', function(toastr){
             toastr.error(message)
         }
     }
-}])
+}]);
