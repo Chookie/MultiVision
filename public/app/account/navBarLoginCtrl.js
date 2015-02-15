@@ -7,9 +7,9 @@
         $scope.signin = function (username, password) {
             mvAuth.authenticateUser(username, password).then( function (success) {
                 if(success){
-                    mvNotifier.notify("You have successfully signed in!");
+                    mvNotifier.notifySuccess("You have successfully signed in!");
                 } else {
-                    mvNotifier.notify("Username/Password combination incorrect")
+                    mvNotifier.notifyFail("Username/Password combination incorrect")
                 }
             });
         };
@@ -18,7 +18,7 @@
                 // Reset username and password text boxes on form
                 $scope.username = "";
                 $scope.password = "";
-                mvNotifier.notify("You have successfully signed out!");
+                mvNotifier.notifySuccess("You have successfully signed out!");
                 // Redirect to home
                 $location.path('/');
             });
