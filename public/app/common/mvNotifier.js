@@ -19,4 +19,4 @@
         };
     }]);
 
-}(window, window.angular.module('app')));
+})(window, window.angular.module('app'));
