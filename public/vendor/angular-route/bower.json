@@ -1,9 +1,0 @@
-{
-  "name": "angular-route",
-  "version": "1.3.10-build.22+sha.13edaa9",
-  "main": "./angular-route.js",
-  "ignore": [],
-  "dependencies": {
-    "angular": "1.3.10-build.22+sha.13edaa9"
-  }
-}
