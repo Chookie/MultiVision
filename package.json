@@ -6,7 +6,8 @@
   "license": "BSD-2-Clause",
   "private": true,
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "engines": {
     "node": "0.10.x",
@@ -24,7 +25,8 @@
     "morgan": "~1.5.1",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
-    "stylus": "^0.49.3"
+    "stylus": "^0.49.3",
+    "bower": "^1.2.8"
   },
   "devDependencies": {
     "karma": "^0.12.31",
