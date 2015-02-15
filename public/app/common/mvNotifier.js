@@ -1,10 +1,16 @@
-angular.module('app').value('mvToastr', toastr);
 
-angular.module('app').factory('mvNotifier', function(mvToastr) {
+// Handle notifications
+angular.module('app').value('toastr', toastr)
+
+angular.module('app').factory('mvNotifier', ['toastr', function(toastr){
+    // THIS CODE IS KIND OF STUPID. wraps toastr library in a service
+    // globally accessible anyhow
     return {
-        notify: function(msg) {
-            mvToastr.success(msg);
-            console.log(msg);
+        notifySuccess: function(message){
+            toastr.success(message)
+        },
+        notifyFail: function(message){
+            toastr.error(message)
         }
     }
-})
+}])
