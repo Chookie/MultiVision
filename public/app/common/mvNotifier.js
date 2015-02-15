@@ -1,7 +1,7 @@
 (function (ngapp) {
 
     // Wrap toastr global variable in service so can use in our dependency injection and use that to inject it below
-    ngapp.value('mvToastr', toastr);
+    ngapp.value('mvToastr', window.toastr);
 
 
     // Service
