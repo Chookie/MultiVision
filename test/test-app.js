@@ -2,4 +2,4 @@
 
 angular.module('app', ['ngResource','ngRoute']);
 
-var toastr = {};
+//var toastr = {};
