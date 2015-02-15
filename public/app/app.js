@@ -18,7 +18,7 @@
         $routeProvider
             .when('/',{ templateUrl: '/partials/main/main', controller: 'mainCtrl'})
             .when('/admin/users', {templateUrl: '/partials/admin/user-list',
-                controller: 'mvUserListCtrl', resolve: routeRoleChecks.admin
+                controller: 'mvUserListCtrl', resolve: routeRoleChecks.admin})
                 // resolver allows conditions for going to route
  /*               resolve: {
                     // This is injectable function so can bring in any injectables I want
@@ -26,8 +26,8 @@
                         return mvAuth.authoriseCurrentUserForRoute('admin')
                     }
                 }*/
-            //.when('/signup',{ templateUrl: '/partials/account/signup', controller: 'mvSignupCtrl'})
-            });
+            .when('/signup',{ templateUrl: '/partials/account/signup', controller: 'mvSignupCtrl'})
+            ;
     });
 
     // This will run after all of the above
