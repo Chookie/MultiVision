@@ -1,7 +1,7 @@
-.idea/*
-node_modules
-MultiVision.iml
-public/vendor
-server/*/*.html
+.idea/**
+node_modules/**
+*.iml
+public/app/**/*.html
 public/css/*.css
-public/app/*.html
+public/vendor/**
+server/**/*.html

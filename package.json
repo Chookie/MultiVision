@@ -33,5 +33,5 @@
     "karma-coverage": "^0.2.7",
     "karma-mocha": "^0.1.10",
     "mocha": "^2.1.0"
-  }
+  },
 }
