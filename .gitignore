@@ -1,4 +1,7 @@
-.idea
+.idea/*
 node_modules
 MultiVision.iml
-vendor
+public/vendor
+server/*/*.html
+public/css/*.css
+public/app/*.html

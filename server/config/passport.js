@@ -3,14 +3,15 @@
       var passport = require('passport'),
           mongoose = require('mongoose'),
           LocalStrategy = require('passport-local').Strategy,
-          User = mongoose.model('User');
+          User = mongoose.model('User'),
+          auth = require('./auth');
 
       module.exports = function () {
           passport.use(new LocalStrategy(
               function (username, password, done) {
                   console.log('findOne ' + username + ' ' + password);
                   User.findOne({username: username}).exec(function (err, user) {
-                    if (user) {
+                    if (user && auth.validatePassword(user.salt, password, user.hashed_pwd)) {
                         console.log('found ' + username);
                         return done(null, user);
                     } else {

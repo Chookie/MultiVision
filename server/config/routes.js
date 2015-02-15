@@ -1,8 +1,16 @@
 (function(){
 
-    var auth = require('./auth');
+    var auth = require('./auth'),
+        mongoose = require('mongoose'),
+        User = mongoose.model('User');
 
     module.exports = function(app) {
+
+        app.get("/api/users", auth.requiresRole('admin'), function (req, res) {
+             User.find({}).exec( function (err, collection){
+                 res.send(collection);
+             });
+        });
 
         /*  5.2 Once add subdirectories get error due to subfolders causing cyclic routing
          // Requests coming from angular, send back the fragment (partial) it wants
@@ -18,14 +26,25 @@
 
         app.post('/login', auth.authenticate);
 
+        app.post('/logout', function(req, res){
+            // logout function was added by passport
+            req.logout();
+            res.end();
+            // normally you would also redirect on teh server but since our client is handling all views
+            // there is no need to redirect on the server at this point.
+        });
+
         // * means how to handle all requests and send to index page
         // Server will always return index.html client page which will then route on client side using angular routing etc.
         // Making client do all the routing rather then this server
         // Can get into trouble if you forget leading slash in angular
         // Other solution is to have server know about all client side routes
         // and have default * send back 404 error
+        // 6.4 3:00 adding second parameter object bootstrapuser so can store this value in the rendered page
         app.get('*', function (req, res) {
-            res.render('index');
+            res.render('index', {
+                bootstrappedUser: req.user
+            });
         });
         /* Moved in chapter 4.3
          /app.get('*', function (req, res) {
