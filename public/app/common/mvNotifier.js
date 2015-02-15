@@ -1,13 +1,10 @@
+angular.module('app').value('mvToastr', toastr);
 
-// Handle notifications
-
-angular.module('app').factory('mvNotifier', function(){
+angular.module('app').factory('mvNotifier', function(mvToastr) {
     return {
-        notifySuccess: function(message){
-            window.toastr.success(message)
-        },
-        notifyFail: function(message){
-            window.toastr.error(message)
+        notify: function(msg) {
+            mvToastr.success(msg);
+            console.log(msg);
         }
     }
-});
+})
