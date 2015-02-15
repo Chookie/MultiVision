@@ -1,3 +1,5 @@
+// This is authorisation of the user
+
 (function (ngapp) {
 
     ngapp.factory('mvIdentity', function ($window, mvUser) {
@@ -16,6 +18,9 @@
             isAuthenticated: function () {
                 // !! converts the object to a boolean
                 return !!this.currentUser;
+            },
+            isAuthorised: function (role){
+                return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
             }
         }
     });

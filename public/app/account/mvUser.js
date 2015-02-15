@@ -1,3 +1,5 @@
+// This is the user object we are passing around
+
 (function (ngapp) {
     // Determine on client if user is an admin
     // Could just look at user.roles everywhere but better way is to implement modelling

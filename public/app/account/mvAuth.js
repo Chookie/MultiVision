@@ -1,3 +1,5 @@
+// These are functions used by the router and getting user
+
 (function (ngapp) {
 
     // $q is for promise
@@ -28,6 +30,16 @@
                     dfd.resolve();
                 });
                 return dfd.promise;
+            },
+            authoriseCurrentUserForRoute: function(role) {
+                if(mvIdentity.isAuthorised(role)){
+                    // True will redirect to route.
+                    return true;
+                } else {
+                    // This will throw a route error event
+                    // Use any message you like as long as use same one listenting for route change errors
+                    return $q.reject('not authorised');
+                }
             }
         }
     });
