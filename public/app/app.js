@@ -1,6 +1,6 @@
 (function (angular) {
 
-    var app = angular.module('app', ['ngResource','ngRoute']);
+    var app = angular.module('app', ['ngResource','ngRoute','toastr']);
 
     app.config( function ($routeProvider, $locationProvider) {
 
