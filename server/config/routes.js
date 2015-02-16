@@ -1,16 +1,15 @@
 (function(){
 
     var auth = require('./auth'),
+        users = require('../controllers/users'),
         mongoose = require('mongoose'),
         User = mongoose.model('User');
 
     module.exports = function(app) {
 
-        app.get("/api/users", auth.requiresRole('admin'), function (req, res) {
-             User.find({}).exec( function (err, collection){
-                 res.send(collection);
-             });
-        });
+        app.get("/api/users", auth.requiresRole('admin'), users.getUsers);
+
+        app.post('/api/users', users.createUser);
 
         /*  5.2 Once add subdirectories get error due to subfolders causing cyclic routing
          // Requests coming from angular, send back the fragment (partial) it wants

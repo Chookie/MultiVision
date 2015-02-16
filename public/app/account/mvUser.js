@@ -9,7 +9,7 @@
     ngapp.factory('mvUser', function($resource){
         var UserResource = $resource('/api/users/:id', {_id: '@id'});
 
-        // Add a new method to the resource (normally just query, post, put)
+        // Add a new method to the resource (normally just query, save, update)
         UserResource.prototype.isAdmin = function() {
             // This is the user that this instance of the resource is managing
             return this.roles && this.roles.indexOf('admin') > -1;

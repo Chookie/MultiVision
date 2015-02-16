@@ -23,6 +23,21 @@
                 });
                 return dfd.promise;
             },
+
+            createUser: function (newUserData){
+                var newUser = new mvUser(newUserData);
+                var dfd = $q.defer();
+
+                newUser.$save().then( function () {
+                    mvIdentity.currentUser = newUser;
+                    dfd.resolve();
+                }, function (response) {
+                    dfd.reject(response.data.reason);
+                });
+
+                return dfd.promise;
+            },
+
             logoutUser: function () {
                 var dfd = $q.defer();
                 $http.post('/logout', {logout: true}).then( function () {
@@ -37,7 +52,7 @@
                     return true;
                 } else {
                     // This will throw a route error event
-                    // Use any message you like as long as use same one listenting for route change errors
+                    // Use any message you like as long as use same one listening for route change errors
                     return $q.reject('not authorised');
                 }
             }
