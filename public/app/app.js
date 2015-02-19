@@ -9,8 +9,13 @@
                 // This is injectable function so can bring in any injectables I want
                 auth: function(mvAuth) {
                     return mvAuth.authoriseCurrentUserForRoute('admin')
+            }},
+            user: {
+                auth: function(mvAuth){
+                    return mvAuth.authoriseAuthenticatedUserForRoute()
+                }
             }
-        }};
+        };
 
         $locationProvider.html5Mode(true);
         // Tell angular that when directed to root, route to our main partial
@@ -27,6 +32,8 @@
                     }
                 }*/
             .when('/signup',{ templateUrl: '/partials/account/signup', controller: 'mvSignupCtrl'})
+            .when('/profile',{ templateUrl: '/partials/account/profile',
+                controller: 'mvProfileCtrl',resolve: routeRoleChecks.user})
             ;
     });
 

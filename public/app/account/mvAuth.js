@@ -38,6 +38,15 @@
                 return dfd.promise;
             },
 
+            updateUser: function (newUserData) {
+                var dfd = $q.defer();
+                // Angular method to copy object
+                var clone = angular.copy(mvIdentity.currentUser);
+                angular.extend(clone, newUserData);
+                // Can't use save as angular uses a post, not a put
+                // clone.$save();
+            },
+
             logoutUser: function () {
                 var dfd = $q.defer();
                 $http.post('/logout', {logout: true}).then( function () {
@@ -53,6 +62,13 @@
                 } else {
                     // This will throw a route error event
                     // Use any message you like as long as use same one listening for route change errors
+                    return $q.reject('not authorised');
+                }
+            },
+            authoriseAuthenticatedUserForRoute: function(){
+                if(mvIdentity.isAuthenticated()){
+                    return true;
+                } else {
                     return $q.reject('not authorised');
                 }
             }

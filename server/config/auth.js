@@ -4,6 +4,7 @@
     var crypto = require('crypto');
 
     exports.authenticate = function (req, res, next) {
+        req.body.username = req.body.username.toLowerCase();
         var auth = passport.authenticate('local', function (err, user, info) {
             console.log('authenticating user %s', user.name)
             // If no password entered then authenticate does not get called on serverside of passport

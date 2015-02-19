@@ -1,7 +1,7 @@
 (function(){
 
     var mongoose = require('mongoose');
-    var auth = require('./auth');
+    var userModel = require('../models/User');
 
     module.exports = function(app, config){
 
@@ -17,34 +17,7 @@
             console.log('multivision db opened on ' + (config.db.indexOf("localhost") !== -1 ? 'localhost' : 'remote host'));
         });
 
-        var userSchema = mongoose.Schema({
-            firstname: String,
-            lastname: String,
-            username: String,
-            // We are sending he salt and password back to the client.  Should remove these from data sent to client.
-            salt: String,
-            hashed_pwd: String,
-            roles: [String]
-        });
-
-        var User = mongoose.model('User', userSchema);
-
-        User.find({}).exec(function (err, collection){
-            if(collection.length === 0){
-                console.log('populating users collection');
-                var salt, hash;
-                salt = auth.createSalt();
-                // Here just using username for password for simplicity
-                hash = auth.hashPwd(salt, 'alison');
-                User.create({
-                                firstname: 'Alison', lastname: 'Johnston', username: 'alison', salt: salt, hashed_pwd: hash,
-                                roles: ['admin']
-                            });
-                salt = auth.createSalt();
-                hash = auth.hashPwd(salt, 'jim')
-                User.create({firstname: 'Jimmy', lastname: 'Hendrix', username: 'jim', salt: salt, hashed_pwd: hash,});
-            }
-        });
+        userModel.createDefaultUsers();
 
         /* Moved in chapter 4.3
          // Create a schema
